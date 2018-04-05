@@ -1,17 +1,17 @@
 *variable pitch oscillator
-.include Model_files/2n3904.txt
-.subckt var_osc Out
 
+.subckt var_osc Out
+.include Model_files/2n3904.txt
 v1 1 0 dc=12
 v6 6 0 dc=-12
-ca i 0 2p ic=1
+ca i 0 2p
 c1 1 2 3300p
 *inductor is variable
 l12 1 2 100u
 la 2 i 40m
-c3 2 10 0.01u ic=1
-c4 1 0 1u ic=1
-C2 2 Out 22p ic=1
+c3 2 10 0.01u
+c4 1 0 1u
+C2 2 Out 22p
 *rhp Out 0 10k
 r3 10 5 47k
 r4 5 0 1k

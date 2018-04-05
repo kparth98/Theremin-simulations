@@ -1,15 +1,16 @@
 voltage controlled amplifier
-.include subvol.cir
+* .include subvol.cir
 .include Model_files/LM13600.txt
-.include Model_files/Diode_1N914.txt
+* .include Model_files/Diode_1N914.txt
 
-xd 1 2 3 4 5 6 5 8 11 LM13600/NS
+.subckt vca in sig7 sig9 vca_out out
+xd 1 2 in 4 5 6 5 8 11 LM13600/NS
 v1 6 0 dc=-12
 v2 11 0 dc=12
-vsig7 sig7 0 dc=-1
-vsig9 sig9 0 dc=1
-va vca_out 0 dc=0.1
-vinp 3 0 sin(-3.25 0.25 1k)
+* vsig7 sig7 0 dc=-1
+* vsig9 sig9 0 dc=1
+* va vca_out 0 dc=0.1
+* vinp in 0 sin(-3.25 0.25 1k)
 r25 4 6 330k
 r26 4 0 4.7k
 r27 2 sig9 100k
@@ -23,11 +24,13 @@ c25 8 9 1u
 r33 9 out 4.7k
 c26 out 0 0.01u
 r34 out 0 4.7k
+.ends
 
-.control
-tran 0.01m 1m
-run
-plot v(3)
 
-.endc
-.end
+* .control
+* tran 0.01m 1m
+* run
+* plot v(3)
+
+* .endc
+* .end

@@ -1,7 +1,7 @@
 * fixed osc subckt
-.include Model_files/2n3904.txt
-.subckt fixed_osc Out
 
+.subckt fixed_osc Out
+.include Model_files/2n3904.txt
 * DC Power supply
 v1 1 0 dc=12
 v6 6 0 dc=-12
