@@ -1,0 +1,19 @@
+vca processor
+.include subvol.cir
+.include LM13600.txt
+.include Diode_1N914.txt
+xd 16 15 0 13 12 6 10 9 11 LM13600/NS
+v1 6 0 dc=-12
+v2 11 0 dc=12
+vsig9 9 0 dc=6
+xvol 13 vol_osc
+r35 11 13 1.8M
+r36 11 15 1.8M
+c27 13 0 0.1u
+r37 13 t 4.7M
+d1 t 12 1N914
+r38 11 16 47k
+*12 goes to VCA 
+*10 is the audio output
+
+

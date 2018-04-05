@@ -1,0 +1,12 @@
+detector subcircuit
+.subckt Out detector
+.include Diode_1N914.txt
+r23 1 Out 10k
+r24 Out 0 4.7k
+c23 Out 0 4.7n
+d4 1 0 1N914
+ci1 3 1 22p
+ci2 4 1 22p
+vsig2 3 0 sin(0 15 260k)
+vsig 4 0 sin(0 15 255k)
+

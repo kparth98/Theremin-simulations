@@ -1,0 +1,33 @@
+* fixed osc subckt
+.include 2n3904.txt
+.subckt fixed_osc Out
+v1 1 0 dc=12
+v6 6 0 dc=-12
+vsig5 sig5 0 dc=-2
+v11 11 0 dc=-12
+c5 1 2 3900p 
+
+*inductor is variable
+
+l13 1 2 94u
+c7 2 15 0.01u ic=1
+c8 1 0 1u 
+C6 2 Out 22p ic=12
+C9 2 8 33p ic=1.5
+c10 9 10 1u 
+c11 10 0 1u
+r9 10 sig5 10k
+r10 12 8 470
+r11 8 9 33
+r12 9 11 10k
+r39 10 11 10k
+r13 9 0 2.2k
+r7 15 5 47k
+r8 5 0 1k
+r5 4 0 1k
+r6 3 6 2.2k
+* the BJTs
+q1 2 4 3 2N3904
+q2 1 5 3 2N3904
+q3 2 12 10 2N3904
+.ends
