@@ -1,6 +1,6 @@
 *volume control osillator
-.include 2n3904.txt
-.include Diode_1N914.txt
+.include Model_files/2n3904.txt
+.include Model_files/Diode_1N914.txt
 * the volume antenna circuit
 la a 1 12.5m
 ca a 0 10p
