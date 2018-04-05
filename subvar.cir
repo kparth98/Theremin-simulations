@@ -1,5 +1,5 @@
 *variable pitch oscillator
-.include 2n3904.txt
+.include Model_files/2n3904.txt
 .subckt var_osc Out
 
 v1 1 0 dc=12

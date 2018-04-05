@@ -1,19 +1,23 @@
 * fixed osc subckt
-.include 2n3904.txt
+.include Model_files/2n3904.txt
 .subckt fixed_osc Out
+
+* DC Power supply
 v1 1 0 dc=12
 v6 6 0 dc=-12
-vsig5 sig5 0 dc=-2
 v11 11 0 dc=-12
+
+* Pitch Tuning signal
+vsig5 sig5 0 dc=-2
+
+* Variable Inductor
+l6 1 2 94u
+
 c5 1 2 3900p 
-
-*inductor is variable
-
-l13 1 2 94u
-c7 2 15 0.01u ic=1
+c7 2 15 0.01u
 c8 1 0 1u 
-C6 2 Out 22p ic=12
-C9 2 8 33p ic=1.5
+C6 2 Out 22p
+C9 2 8 33p
 c10 9 10 1u 
 c11 10 0 1u
 r9 10 sig5 10k
@@ -26,6 +30,7 @@ r7 15 5 47k
 r8 5 0 1k
 r5 4 0 1k
 r6 3 6 2.2k
+
 * the BJTs
 q1 2 4 3 2N3904
 q2 1 5 3 2N3904

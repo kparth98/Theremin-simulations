@@ -1,7 +1,7 @@
 vca processor
 .include subvol.cir
-.include LM13600.txt
-.include Diode_1N914.txt
+.include Model_files/LM13600.txt
+.include Model_files/Diode_1N914.txt
 xd 16 15 0 13 12 6 10 9 11 LM13600/NS
 v1 6 0 dc=-12
 v2 11 0 dc=12

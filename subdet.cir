@@ -1,6 +1,6 @@
 detector subcircuit
 .subckt Out detector
-.include Diode_1N914.txt
+.include Model_files/Diode_1N914.txt
 r23 1 Out 10k
 r24 Out 0 4.7k
 c23 Out 0 4.7n

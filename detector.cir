@@ -1,13 +1,13 @@
 detector circuit
-.include 2n3904.txt
+.include Model_files/2n3904.txt
 .include subvar.cir
 .include subfixed.cir
-.include Diode_1N914.txt
+.include Model_files/Diode_1N914.txt
 xfixed 1 fixed_osc
 xvar 1 var_osc
 *v1 3 0 sin(0 5 260k 0 0) dc=0
 *v2 3 1 sin(0 5 257k 0 0) dc=0
-*vd1 3 4 dc=0
+* vd1 3 4 dc=0
 *vd2 4 1 dc =0
 d1 1 0 1N914
 r23 1 2 10k
