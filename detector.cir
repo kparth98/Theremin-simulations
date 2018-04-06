@@ -1,10 +1,9 @@
-detector circuit
-* .include Model_files/2n3904.txt
-
-.subckt detector out 
+* detector circuit
 .include subvar.cir
 .include subfixed.cir
 .include Model_files/Diode_1N914.txt
+
+.subckt detector out 
 xfixed 1 fixed_osc
 xvar 1 var_osc
 d1 1 0 1N914
@@ -13,13 +12,13 @@ r24 out 0 47k
 c23 out 0 4700p
 .ends
 
-xdetect 1 detector
+* xdetect 1 detector
 
-.control
-tran 0.1us 5ms
-run
+* .control
+* tran 0.1us 5ms
+* run
 
-plot v(1)
-.endc
-.end
+* plot v(1)
+* .endc
+* .end
 

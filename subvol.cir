@@ -1,4 +1,4 @@
-subcircuit volume oscillator
+* subcircuit volume oscillator
 .include Model_files/2n3904.txt
 .include Model_files/Diode_1N914.txt
 .subckt vol_osc Out

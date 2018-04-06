@@ -1,15 +1,15 @@
 vca processor
-.include subvol.cir
+*.include subvol.cir
 .include Model_files/LM13600.txt
-.include detector.cir
+*.include LM13700_SUB.cir
 .include Model_files/Diode_1N914.txt
 xd1 16 15 0 13 12 6 10 9 11 LM13600/NS
 v1 6 0 dc=-12
 v2 11 0 dc=12
-vsig9 9 0 dc=6
-vsig7 7 0 dc=-1
-xvol 13 vol_osc
-* vvol 13 0 sin(0 10 450k)
+vsig9 sig9 0 dc=6
+vsig7 sig7 0 dc=-1
+*xvol 13 vol_osc
+vvol 13 0 sin(0 2.5 450k) dc=-3
 r35 11 13 1.8M
 r36 11 15 1.8M
 c27 13 0 0.1u
@@ -18,28 +18,28 @@ d1 t 12 1N914
 r38 11 16 47k
 *12 goes to VCA 
 *10 is the audio output
-* xd2 1 2 3 4 5 6 7 8 11 LM13600/NS
-* * vinp 3 0 sin(0 2 1k) dc=-1
-xdetect 3 detector
-vshort 5 7 dc=0
+xd2 1 2 3 4 5 6 5 8 11 LM13600/NS
+vinp 3 0 sin(-3.25 0.25 5k)
+* vshort 5 5 dc=0
 r25 4 6 330k
 r26 4 0 4.7k
-r27 2 9 100k
-r28 4 5 150k
+r27 2 sig9 100k
+r28 4 sig7 150k
 r29 1 6 100k
 r30 1 12 47k
 r31	5 0 4.7k
 r32 8 6 4.7k
-c24 7 0 3.3n
+c24 5 0 0.01u
 c25 8 t2 1u
-r33 t2 10 4.7k
-c26 10 0 0.01u
-r34 10 0 4.7k
+r33 t2 sig10 4.7k
+c26 sig10 0 0.01u
+r34 sig10 0 4.7k
 
 .control
-tran 0.01m 10m
+tran 1u 3m
 run
-plot v(3) v(10)
+plot v(3) v(13)
+plot v(12) v(sig10) v(10) v(9)
 
 .endc
 .end
