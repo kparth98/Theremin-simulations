@@ -5,18 +5,18 @@
 .include Model_files/1n4148.txt
 
 .subckt detector out 
-xfixed 1 fixed_osc
-xvar 1 var_osc
+xfixed 1 FIXED_OSC
+xvar 1 VAR_OSC
 xd1 1 0 1N4148
 r23 1 out 10k
-r24 out 0 47k
+r24 out 0 10k
 c23 out 0 4700p
 .ends
 
 * xdetect 1 detector
 
 * .control
-* tran 0.1us 5ms
+* tran 0.001ms 10ms
 * run
 
 * plot v(1)
