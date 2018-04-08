@@ -2,18 +2,19 @@
 .include Model_files/2n3904.sp3.txt
 * .include Model_files/Diode_1N914.txt
 .include Model_files/1n4148.txt
+.include Model_files/ua741.txt	
 
 .subckt vol_osc Out
 * the volume antenna circuit
 v1 4 0 dc=12
 v2 9 0 dc=-12
 la a 1 12.5m
-ca a 0 12p
+ca a 0 5p
 xd1 2 1 1N4148
 c12 2 3 1000p 
 *ic=1
 l7 3 1 2.5m
-r14 2 Out 1meg
+r14 2 Out 560k
 
 vsig6 sig6 0 dc=-10
 *variable inductor
@@ -38,11 +39,20 @@ r22 13 9 10k
 r20 13 10 33
 .ends
 
-xvol 1 vol_osc
+* xvol 1 vol_osc
+* * xo 0 2 3 4 5 ua741
+* * vpos 3 0 dc=12
+* * vneg 4 0 dc=-12
+* * r1 1 2 10k
+* * * r3 7 0 10k
+* * * r4 7 2 10k
+* * rf 2 5 1Meg
+* * r1 1 6 10k
+* * c1 6 0 1u
 
-.control
-tran 0.01m 50m uic
-run
-plot v(1)
-.endc
-.end
+* .control
+* tran 0.01m 50m uic
+* run
+* plot v(1)
+* .endc
+* .end

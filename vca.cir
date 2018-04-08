@@ -1,45 +1,23 @@
-voltage controlled amplifier
-* .include subvol.cir
-* .include Model_files/LM13600.txt
-.include Model_files/LM13700.txt
+.include ina.cir
+.include Model_files/ua741.txt
 .include detector.cir
-* .include Model_files/Diode_1N914.txt
 
-.subckt vca in sig7 sig9 vca_out out
-xd 1 2 in 4 5 6 5 8 11 HALF13700
-v1 6 0 dc=-12
-v2 11 0 dc=12
-* vsig7 sig7 0 dc=-1
-* vsig9 sig9 0 dc=1
-* va vca_out 0 dc=0.1
-* vinp in 0 sin(-3.25 0.25 1k)
-r25 4 6 330k
-r26 4 0 4.7k
-r27 2 sig9 100k
-r28 4 sig7 150k
-r29 1 6 100k
-r30 1 vca_out 47k
-r31	5 0 4.7k
-r32 8 6 4.7k
-c24 5 0 3.3n
-c25 8 9 1u
-r33 9 out 4.7k
-c26 out 0 0.01u
-r34 out 0 4.7k
-.ends
+vpos dcpos 0 dc = 12
+vneg dcneg 0 dc=-12
+xina neg pos ref op dcpos dcneg ina
+xo 0 2 dcpos dcneg ref ua741
 
-xd in detector
-xvca in sig7 sig9 1 2 vca
-vsig7 sig7 0 dc=-1
-vsig9 sig9 0 dc=1
-va vca_out 0 dc=2
+r1 pos sig 180k
+r2 neg 0 180k
+r3 2 op 10k
+c1 ref 2 0.1u
 
+xd sig detector
+* vsig sig 0 sin(-3 0.25 2k)
+
+.tran 0.01m 10m
 .control
-tran 0.01m 10m
 run
-plot v(2) v(in) 
-* v(12)
-* plot v(13)
-
+plot v(op)
 .endc
 .end

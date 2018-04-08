@@ -1,10 +1,10 @@
 .include Model_files/lm13700.txt
 
 .subckt vca audio dtc vca_proc
-xd2 1 2 dtc 4 5 6 7 8 11 lm13700/ns
-vsig9 sig9 0 dc=6
-vsig7 sig7 0 dc=-1
-vshort 5 7 dc=0
+xd2 1 2 dtc 4 5 6 5 8 11 lm13700/ns
+vsig9 sig9 0 dc=12
+vsig7 sig7 0 dc=-6
+* vshort 5 5 dc=0
 r25 4 6 330k
 r26 4 0 4.7k
 r27 2 sig9 100k
@@ -13,9 +13,22 @@ r29 1 6 100k
 r30 1 vca_proc 47k
 r31	5 0 4.7k
 r32 8 6 4.7k
-c24 7 0 3.3n
+c24 5 0 0.01u
 c25 8 t2 1u
 r33 t2 audio 4.7k
 c26 audio 0 0.01u
 r34 audio 0 4.7k
 .ends
+
+xv 1 2 3 vca
+vsig 2 0 sin(0 1 2k)
+vd 3 0 dc=2
+
+.tran 0.01m 5m
+.control
+run
+plot v(1)
+.endc
+.end
+
+

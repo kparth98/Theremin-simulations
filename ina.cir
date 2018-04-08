@@ -1,0 +1,16 @@
+* instrumentation amp
+.include Model_files/ua741.txt
+
+.subckt ina neg pos ref op dcpos dcneg
+xo1 neg 2 dcpos dcneg 5 ua741
+xo2 pos 6 dcpos dcneg 8 ua741
+xo3 9 10  dcpos dcneg op ua741
+r1 5 2 25k
+r2 8 6 25k
+rg 2 6 10k		
+*  gain = 1+ (50k/rg)
+r3 5 10 60k
+r4 8 9 60k
+rf 10 op 60k
+rref 9 ref 60k
+.ends
