@@ -1,0 +1,30 @@
+vca processor
+.include Model_files/LM13700.txt
+* .include Model_files/Diode_1N914.txt
+.include Model_files/1n4148.txt
+
+* xd1 16 15 0 13 12 6 10 9 11 LM13600/NS
+.subckt vca_proc vol op
+xd1 16 15 0 vol op 6 10 9 11 lm13700/ns
+v1 6 0 dc=-12
+v2 11 0 dc=12
+* vvol vol 0 sin(0 10 450k)
+r35 11 vol 4.7Meg
+r36 11 15 1Meg
+c27 vol 0 0.1u
+r37 vol t 3.3Meg
+xd t op 1n4148
+r38 11 16 47k
+.ends
+
+xs vol op vca_proc
+vsig vol 0 dc=-10m
+
+.tran 1u 1m
+
+.control
+run
+plot v(op) v(vol)
+
+.endc
+.end

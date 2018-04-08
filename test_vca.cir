@@ -1,0 +1,41 @@
+.include Model_files/bc547b.txt
+.include Model_files/2n5486.txt
+.include Model_files/1n4148.txt
+
+.subckt test_vca vol mix aud
+vplus 1 0 dc=12
+c1 1 0 0.1u
+c2 1 0 10u
+r1 1 2 10k
+q1 2 3 0 bc547b
+c3 2 0 0.1u
+r2 2 4 470k
+j1 5 4 6 2n5486
+r3 5 7 1meg
+c4 7 mix 4.7p
+c5 5 8 0.001u
+r4 6 8 4.7Meg
+j2 6 8 9 2n5486
+r5_1 9 aud 5k
+r5_2 aud 0 5k
+r6 8 0 4.7Meg
+xd 0 3 1n4148
+c6 3 11 4.7p
+c7 11 0 227p
+* cvar 11 0 0p
+l1 11 0 330u
+c9 11 vol 4.7p
+.ends
+
+xd1 vol mix aud test_vca
+vvol vol 0 sin(0 12 250k)
+vmix mix 0 sin(-3.25 0.25 3k)
+
+* .tran 0.01m 10m
+.ac dec 100 50k 1Meg
+.control
+run
+* plot vdb(mix)
+plot vdb(aud)
+.endc
+.end

@@ -3,7 +3,7 @@
 .subckt vca audio dtc vca_proc
 xd2 1 2 dtc 4 5 6 7 8 11 lm13700/ns
 vsig9 sig9 0 dc=6
-vsig7 sig7 0 dc=-6
+vsig7 sig7 0 dc=-1
 vshort 5 7 dc=0
 r25 4 6 330k
 r26 4 0 4.7k
@@ -19,15 +19,3 @@ r33 t2 audio 4.7k
 c26 audio 0 0.01u
 r34 audio 0 4.7k
 .ends
-
-xv a d v vca
-vd d 0 sin(-3.25 0.25 3k)
-vv v 0 dc=-11.3
-
-.control
-tran 0.01m 10m
-run
-plot v(a) v(d) v(v)
-plot v(a)
-.endc
-.end 
